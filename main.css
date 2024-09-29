@@ -25,17 +25,58 @@
     border-radius: 20px;
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Gradient Overlays */
+.todo-app::before, .todo-app::after {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.2), transparent);
+    border-radius: 50%;
+    z-index: -1;
+}
+.todo-app::before {
+    top: -20px;
+    left: -20px;
+}
+.todo-app::after {
+    bottom: -20px;
+    right: -20px;
+}
+
+/* Hover effects */
+.todo-app:hover {
+    box-shadow: 0 4px 30px rgba(255, 255, 255, 0.2), 0 0 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Heading */
+.todo-app h2 {
+    color: #fff;
+    text-align: center; /* Center the text horizontally */
+    margin-bottom: 20px;
+}
+
+/* Image in the heading */
+.todo-app h2 img {
+    width: 30px; /* Set the size of the image */
+    margin-left: 10px; /* Space between text and image */
 }
 
 /* Responsive Rows */
 .row {
     display: flex;
+    flex-wrap: wrap; /* Allow wrapping */
     align-items: center;
-    justify-content: space-between; /* Adjust spacing */
+    justify-content: space-between;
     background: #fff;
     border-radius: 20px;
-    padding: 8px;
+    padding: 8px 15px;
     margin-bottom: 5px;
+    font-size: 1rem; /* Base font size */
 }
 
 /* Input Styles */
@@ -46,60 +87,140 @@ input {
     background: transparent;
     padding: 10px;
     font-size: 1rem; /* Use rem for responsiveness */
-    margin-right: 10px; /* Space between input and button */
 }
 
 /* Button Styling */
 button {
     background-color: #ffffff;
     color: black;
-    border-radius: 20px; /* Use a smaller radius for consistency */
-    font-size: 1rem;
-    padding: 10px 15px; /* Adjust padding */
+    border-radius: 40px;
+    font-size: 1rem; /* Base font size */
+    padding: 8px 20px; /* Base padding */
     cursor: pointer;
     transition: all 0.3s ease-in-out;
-    border: none; /* Remove default border */
+    border: none; /* No border */
 }
 
-/* Hover effects */
 button:hover {
-    transform: translateY(-2px);
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    transform: translateY(-4px) translateX(-2px);
+    box-shadow: 2px 5px 0 0 black;
 }
 
-/* Active state */
 button:active {
-    transform: translateY(1px);
+    transform: translateY(2px) translateX(1px);
 }
 
-/* Media Query for smaller screens */
+/* List Items */
+ul {
+    padding: 0; /* Reset padding for ul */
+}
+
+ul li {
+    list-style: none;
+    font-size: 1rem; /* Base font size */
+    padding: 10px 8px 10px 50px;
+    user-select: none;
+    cursor: pointer;
+    color: #fff;
+    position: relative;
+}
+
+/* List Item Icons */
+ul li::before {
+    content: '';
+    position: absolute;
+    height: 28px;
+    width: 28px;
+    border-radius: 50%;
+    background-image: url(images/unchecked.png);
+    background-size: cover;
+    background-position: center;
+    top: 7px;
+    left: 8px;
+}
+
+/* Checked State */
+ul li.checked {
+    color: #555;
+    text-decoration: line-through;
+}
+
+ul li.checked::before {
+    background-image: url(images/checked.png);
+}
+
+/* Delete Button */
+ul li span {
+    position: absolute;
+    right: 0;
+    top: 5px;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    color: #555;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 50%;
+}
+
+ul li span:hover {
+    color: #ff5722;
+}
+
+/* Media Queries for Responsiveness */
 @media (max-width: 768px) {
     .todo-app {
-        max-width: 90%; /* Make it take more width on smaller screens */
+        max-width: 90%; /* Take more width on smaller screens */
+        padding: 5%; /* Adjust padding */
     }
 
     .row {
-        flex-direction: column; /* Stack items vertically on small screens */
-    }
-
-    input {
-        margin-right: 0; /* Remove margin on smaller screens */
-        margin-bottom: 10px; /* Add space below the input */
+        font-size: 0.9rem; /* Smaller font size */
     }
 
     button {
-        width: 100%; /* Make button full width */
+        font-size: 0.9rem; /* Adjust button size */
+        padding: 6px 15px; /* Adjust button padding */
+    }
+
+    ul li {
+        font-size: 0.85rem; /* Smaller font size */
+        padding: 8px 6px 8px 40px;
+    }
+
+    ul li span {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem; /* Adjusted for smaller screens */
     }
 }
 
 @media (max-width: 480px) {
+    .todo-app {
+        padding: 10px; /* Reduced padding */
+    }
+
+    .row {
+        flex-direction: column; /* Stack input and button vertically */
+        align-items: stretch; /* Make them take full width */
+    }
+
     input {
-        font-size: 0.9rem; /* Smaller font size for smaller screens */
-        padding: 8px; /* Adjust padding */
+        margin-bottom: 10px; /* Space below input */
     }
 
     button {
-        font-size: 0.9rem; /* Adjust button font size */
-        padding: 8px 10px; /* Adjust button padding */
+        width: 100%; /* Full width button */
+        padding: 10px; /* Padding adjustment */
+        font-size: 1rem; /* Font size adjustment */
+    }
+
+    ul li {
+        padding: 6px 4px 6px 30px;
+    }
+
+    ul li::before {
+        height: 20px;
+        width: 20px;
     }
 }

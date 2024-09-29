@@ -1,37 +1,105 @@
+/* Global Reset and Font */
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif; /* Updated font family */
+    box-sizing: border-box;
+}
+
+/* Container */
+.container {
+    min-height: 100vh;
+    width: 100%;
+    padding: 2%; /* Use % for better responsiveness */
+    background-image: url(images/back2.jpg);
+    background-size: cover;
+}
+
+/* To-do app container */
+.todo-app {
+    width: 100%;
+    max-width: 540px; /* Limit width to fit smaller screens */
+    background: rgba(255, 255, 255, 0.08);
+    margin: 10vh auto 20px;
+    padding: 5%; /* Responsive padding */
+    border-radius: 20px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive Rows */
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Adjust spacing */
+    background: #fff;
+    border-radius: 20px;
+    padding: 8px;
+    margin-bottom: 5px;
+}
+
+/* Input Styles */
+input {
+    flex: 1; /* Allow input to grow */
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 10px;
+    font-size: 1rem; /* Use rem for responsiveness */
+    margin-right: 10px; /* Space between input and button */
+}
+
 /* Button Styling */
 button {
-    width: 100%; /* Make button full width */
     background-color: #ffffff;
     color: black;
-    border-radius: 40px;
+    border-radius: 20px; /* Use a smaller radius for consistency */
     font-size: 1rem;
-    padding: 10px 20px; /* Adjust padding */
+    padding: 10px 15px; /* Adjust padding */
     cursor: pointer;
     transition: all 0.3s ease-in-out;
-    box-shadow: 0 0 0 0 black;
-    border-color: transparent;
-    margin-top: 10px; /* Add some space above the button */
+    border: none; /* Remove default border */
 }
 
+/* Hover effects */
 button:hover {
-    transform: translateY(-4px) translateX(-2px);
-    box-shadow: 2px 5px 0 0 black;
+    transform: translateY(-2px);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
+/* Active state */
 button:active {
-    transform: translateY(2px) translateX(1px);
-    box-shadow: 0 0 0 0 black;
+    transform: translateY(1px);
 }
 
 /* Media Query for smaller screens */
 @media (max-width: 768px) {
+    .todo-app {
+        max-width: 90%; /* Make it take more width on smaller screens */
+    }
+
+    .row {
+        flex-direction: column; /* Stack items vertically on small screens */
+    }
+
+    input {
+        margin-right: 0; /* Remove margin on smaller screens */
+        margin-bottom: 10px; /* Add space below the input */
+    }
+
     button {
-        padding: 8px 15px; /* Adjust button size */
+        width: 100%; /* Make button full width */
     }
 }
 
 @media (max-width: 480px) {
+    input {
+        font-size: 0.9rem; /* Smaller font size for smaller screens */
+        padding: 8px; /* Adjust padding */
+    }
+
     button {
-        padding: 6px 10px; /* Further adjust for very small screens */
+        font-size: 0.9rem; /* Adjust button font size */
+        padding: 8px 10px; /* Adjust button padding */
     }
 }

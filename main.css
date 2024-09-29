@@ -13,6 +13,7 @@
     padding: 2%; /* Use % for better responsiveness */
     background-image: url(images/back2.jpg);
     background-size: cover;
+    background-position: center; /* Center the background image */
 }
 
 /* To-do app container */
@@ -58,12 +59,6 @@
     color: #fff;
     text-align: center; /* Center the text horizontally */
     margin-bottom: 20px;
-    justify-content: center; /* Centers the content inside the flex container */
-}
-
-.todo-app h2 img {
-    width: 30px;
-    margin-left: 10px;
 }
 
 /* Responsive Rows */
@@ -204,5 +199,26 @@ ul li span:hover {
     ul li::before {
         height: 20px;
         width: 20px;
+    }
+}
+
+/* Additional Media Queries for extreme sizes */
+@media (max-width: 360px) {
+    .todo-app {
+        padding: 5px; /* Reduce padding for very small screens */
+    }
+
+    h2 {
+        font-size: 1.5rem; /* Smaller heading */
+    }
+
+    .row {
+        flex-direction: column; /* Stack items vertically */
+        align-items: flex-start; /* Align items to start */
+    }
+
+    ul li {
+        font-size: 0.8rem; /* Even smaller font size */
+        padding: 6px 4px; /* Reduce padding */
     }
 }
